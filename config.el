@@ -98,3 +98,7 @@
 
 (setq persp-emacsclient-init-frame-behaviour-override "main")
 (setq display-line-numbers-type 'relative)
+
+;; (use-package window-stool
+;;   :config
+;;   (add-hook 'prog-mode-hook #'window-stool-mode))
