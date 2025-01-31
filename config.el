@@ -96,9 +96,21 @@
 (map! :desc "Previous tab" :n "<backtab>" #'previous-buffer)
 (map! :desc "indent" :i [tab] #'indent-for-tab-command)
 
-(setq persp-emacsclient-init-frame-behaviour-override "main")
+
+(after! persp-mode
+  (setq persp-emacsclient-init-frame-behaviour-override
+        `(+workspace-current-name))
+  )
 (setq display-line-numbers-type 'relative)
 
-;; (use-package window-stool
-;;   :config
-;;   (add-hook 'prog-mode-hook #'window-stool-mode))
+(+global-word-wrap-mode +1)
+
+(after! org-download
+  (setq org-download-method 'directory)
+  (setq org-download-image-dir (concat (file-name-sans-extension (buffer-file-name)) "-img"))
+  (setq org-download-image-org-width 600)
+  (setq org-download-link-format "[[file:%s]]\n"
+        org-download-abbreviate-filename-function #'file-relative-name)
+  (setq org-download-link-format-function #'org-download-link-format-function-default))
+
+(setq org-download-image-dir "~/org/Images/Attachments/")
